@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    this是什么？
+    任何函数本质上都是通过某个对象来调用的，如果没直接指定，就是window
+    所有函数内部都有一个变量this
+    它的值是调用函数的当前对象
+    this的值？
+    test():window
+    p.test():p
+    new test():创建的新的对象
+    p.call(obj)：obj
+
+   -->
+  <script type="text/javascript">
+    function Persion(color) {
+      console.log(this);
+      this.color = color
+      this.getColor = function () {
+        console.log(this);
+        return this.color
+      }
+      this.setColor = function (color) {
+        console.log(this);
+        this.color = color
+      }
+    }
+    Persion('res') //this==>window
+    var p = new Persion('yellow')//this===>Persion的构造函数
+    p.getColor()//this===>Persion的实例
+    var obj = {}
+    p.setColor.call(obj, 'black')//this===>obj
+
+    var test = p.setColor
+    test()//this==>window
+    function fun1(){
+      function fun2(){
+        console.log(this);//this===>window
+      }
+      fun2()
+    }
+    fun1()
+  </script>
+</body>
+
+</html>

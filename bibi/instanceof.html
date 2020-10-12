@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    1.instanceof 是如何判断的？
+    表达式：A instanceof B   A 是实例对象，B是构造函数
+    如果B函数的显示原型对象在A对象的原型链上，返回true, 否则返回false
+
+   -->
+  <script type="text/javascript">
+    function Foo() { }
+    var f1 = new Foo()
+    // console.log(f1 instanceof Foo);//true
+    // console.log(f1 instanceof Object); //true
+
+    // 第二案例
+    // console.log(Object instanceof Function);//true
+    // console.log(Object instanceof Object);//true
+    // console.log(Function instanceof Function);//true
+    // console.log(Function instanceof Object);//true
+    // console.log(Object instanceof Foo);//false
+
+
+    // 题型分析
+    function A() { }
+    A.prototype.n = 5
+    var a = new A()
+    A.prototype = {
+      n: 2,
+      m: 3
+    }
+    var b = new A()
+    //5,undefided,2,3
+    console.log(a.n, a.m, b.n, b.m);
+
+
+    var F = function () { }
+    Object.prototype.a = function () {
+      console.log("a");
+    }
+    Function.prototype.b = function () {
+      console.log("b");
+    }
+    var f = new F()
+    f.a()//a
+    f.b()//undefinde
+    F.a()//a
+    F.b()//b
+  </script>
+</body>
+
+</html>
