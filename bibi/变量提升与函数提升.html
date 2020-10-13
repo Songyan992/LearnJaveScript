@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    1.变量声明提升：
+    通过var定义（声明）的变量，在定义语句之前就可以访问到
+    值：undefined
+    2.函数声明提升
+    通过function 声明的函数，在之前就可以直接调用执行函数
+    3.问题：变量提升和函数提升是如何产生的？
+
+    函数提升优先级高于变量提升，后执行。：变量提升先提升，函数后提升，先执行变量，后执行函数
+   -->
+  <script type="text/javascript">
+    var a = 3
+    function fu() {
+      console.log(a);
+      var a = 4
+    }
+    fu()//undefined
+    console.log(b);//undefined 函数提升
+    var b = 3
+    fn2()//可调用，函数提升
+    // fun3()//不可调用，变量提升
+    function fn2() {
+      console.log("fn2");
+    }
+    var fun3 = function () {
+      console.log("fn3");
+     }
+
+  // 变量提升：在变量定义之前，就可以访问到变量，值是undefined
+  </script>
+</body>
+
+</html>
